@@ -112,7 +112,7 @@ const sortTable = (key: string) => {
     <div ref="tableContainer" class="overflow-y-scroll w-[600px] h-[600px]" @scroll="handleScroll">
       <Table>
         <TableHeader class="sticky top-0 z-10">
-          <TableRow>
+          <TableRow class="cursor-pointer">
             <TableHead @click="sortTable('id')">Ид</TableHead>
             <TableHead @click="sortTable('albumId')">Альбом</TableHead>
             <TableHead @click="sortTable('title')">Название</TableHead>
