@@ -26,8 +26,15 @@ export const useAlbumsStore = defineStore('albumsStore', {
         async sendRequest(albumIds: string) {
             this.albumIds = albumIds;
             localStorage.setItem(STORAGE_KEYS.ALBUM_IDS, albumIds);
-            const params = albumIds.split(' ').map((id: string) => `albumId=${id}`).join('&');
-            const url = `https://jsonplaceholder.typicode.com/photos?${params}`;
+
+            let url = 'https://jsonplaceholder.typicode.com/photos';
+
+            if (albumIds.trim()) {
+                const params = albumIds.split(' ')
+                    .map((id: string) => `albumId=${encodeURIComponent(id)}`)
+                    .join('&');
+                url += `?${params}`;
+            }
 
             try {
                 const response = await axios.get(url);
